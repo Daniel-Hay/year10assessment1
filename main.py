@@ -7,9 +7,17 @@ location = input("Enter a location: ")
 def weather_main(location):
    response_current = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={api_key}')
    response_forecast = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?q={location}&units=metric&appid={api_key}')
-   print(response_current.status_code)
+
+   current_weather = json.loads(response_current.text)
+   forecast_weather = json.loads(response_forecast.text)
+
+   print(current_weather['main']['temp'])
+
+   #print(response_current.status_code)
    print(response_current.json())
-   print(response_forecast.status_code)
-   print(response_forecast.json())
+   #print(response_forecast.status_code)
+   #print(response_forecast.json())
+
+
 
 weather_main(location)
