@@ -1,6 +1,5 @@
 import requests
 import json 
-import pprint
 
 api_key = '628b24e279558dc47b21fb160692cdcf'
 location = input("Enter a location: ")
@@ -11,6 +10,6 @@ def weather_main(location):
    print(response_current.status_code)
    print(response_current.json())
    print(response_forecast.status_code)
-   pprint.pprint(response_forecast.json())
+   print(response_forecast.json())
 
 weather_main(location)
