@@ -42,7 +42,7 @@ def weather_main(location):
 
    # If invalid request, re-asks user to input a valid location
    else:
-      print("Status denied", style = "error")
+      Theme.print("Status denied", style = "error")
       location_new = input("Re-enter a location: ")
       weather_main(location_new)
 
