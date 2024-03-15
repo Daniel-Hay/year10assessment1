@@ -3,6 +3,7 @@ import json
 from rich.table import Table
 from rich.console import Console
 import time
+import emoji
 
 api_key = '628b24e279558dc47b21fb160692cdcf'
 history = []
@@ -54,7 +55,7 @@ def weather_main(location):
          counter_forecast = 1
          
          forecasttable = Table(title=f"5 Day Forecast for {location}")
-         forecasttable.add_column("x", justify="center")
+         forecasttable.add_column(emoji.emojize(:sunbehindcloud:), justify="center")
 
          while counter_forecast < 6:
             temperature_forcast0 = 0
@@ -75,6 +76,7 @@ def weather_main(location):
       weather_main(location_new)
 
 def intructions():
+   print("Ryan Whateley is mega stinky")
    intro()
 
 intro()
