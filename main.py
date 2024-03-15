@@ -40,27 +40,33 @@ def weather_main(location):
 
       print(current_weather['main']['temp']) 
 
-      # print(response_current.status_code)
-      # print(response_current.json())
-      # print(response_forecast.status_code)
-      print(response_forecast.json())
+      #print(response_forecast.json())
 
       # prints current weather
       print(f"The current weather in {location}")
+      
       print(f"History: ")
       print(history)
 
-      def forecast(location):
-         forecasttable = Table(title="5 Day Forecast")
-         forecasttable.add_column(" ")
-         forecasttable.add_column(location, style="magenta")
+      # Forecast function for 5 day
+      def forecast(location, forecast_weather):
 
-         forecasttable.add_row("temperature", forecast_weather['list'][1]['main']['temp'])
+         counter_forecast = 1
+         
+         forecasttable = Table(title=f"5 Day Forecast for {location}")
+         forecasttable.add_column("x", justify="center")
+
+         while counter_forecast < 6:
+            temperature_forcast0 = 0
+            forecasttable.add_column(f"Day {counter_forecast}", style="magenta")
+            counter_forecast += 1
+
+         forecasttable.add_row("temperature", str(forecast_weather['list'][1]['main']['temp']), str(forecast_weather['list'][2]['main']['temp']), str(forecast_weather['list'][3]['main']['temp']), str(forecast_weather['list'][4]['main']['temp']), str(forecast_weather['list'][5]['main']['temp']))
 
          console = Console()
          console.print(forecasttable)
 
-      forecast(location)
+      forecast(location, forecast_weather)
 
    # If invalid request, re-asks user to input a valid location
    else:
