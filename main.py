@@ -3,7 +3,6 @@ import json
 from rich.table import Table
 from rich.console import Console
 import time
-import emoji
 
 api_key = '628b24e279558dc47b21fb160692cdcf'
 history = []
@@ -11,7 +10,7 @@ history = []
 print("Welcome to Daniel's Weather Console")
 
 def intro():
-   answer = input("Do you want to continue (c), view instruction (i) or exit the program (e)")
+   answer = input("Do you want to continue (c), view instruction (i) or exit the program (e): ")
    if answer == "c":
       weather_main(location = input("Enter a location: "))
    elif answer == "i":
@@ -39,11 +38,6 @@ def weather_main(location):
       # Adding to the history list
       history.append(location)
 
-      print(current_weather['main']['temp']) 
-
-      #print(response_forecast.json())
-
-      # prints current weather
       print(f"The current weather in {location}")
       
       print(f"History: ")
@@ -54,20 +48,24 @@ def weather_main(location):
 
          counter_forecast = 1
          
-         forecasttable = Table(title=f"5 Day Forecast for {location}")
-         forecasttable.add_column(emoji.emojize(:sunbehindcloud:), justify="center")
+         forecasttable = Table(title=f"5 Day Forecast for {location.upper()}")
+         forecasttable.add_column(f"{location.upper()}", justify="center")
 
          while counter_forecast < 6:
             temperature_forcast0 = 0
             forecasttable.add_column(f"Day {counter_forecast}", style="magenta")
             counter_forecast += 1
 
+         # Creates forecast table
          forecasttable.add_row("temperature", str(forecast_weather['list'][1]['main']['temp']), str(forecast_weather['list'][2]['main']['temp']), str(forecast_weather['list'][3]['main']['temp']), str(forecast_weather['list'][4]['main']['temp']), str(forecast_weather['list'][5]['main']['temp']))
 
          console = Console()
          console.print(forecasttable)
 
       forecast(location, forecast_weather)
+      
+      # Re-asks user if they want to continue
+      intro()
 
    # If invalid request, re-asks user to input a valid location
    else:
@@ -76,7 +74,6 @@ def weather_main(location):
       weather_main(location_new)
 
 def intructions():
-   print("Ryan Whateley is mega stinky")
    intro()
 
 intro()
