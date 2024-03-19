@@ -52,6 +52,8 @@ def weather_main(location):
          currenttable.add_row("Description", str(current_weather['weather'][0]['description']))
          currenttable.add_row("Temperature", str(current_weather['main']['temp']))
          currenttable.add_row("Feels Like", str(current_weather['main']['feels_like']))
+         currenttable.add_row("Pressure", str(current_weather['main']['pressure']))
+         currenttable.add_row("Humidity", str(current_weather['main']['humidity']))
 
          print(currenttable)
 
@@ -75,8 +77,8 @@ def weather_main(location):
          console = Console()
          console.print(forecasttable)
 
-      forecast(location, forecast_weather)
-      current(location, current_weather)
+      current(location, forecast_weather)
+      forecast(location, current_weather)
 
       # Adding to the history list
       history.append(location)
