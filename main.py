@@ -2,6 +2,7 @@ import requests
 import json
 from rich.table import Table
 from rich.console import Console
+from rich import print
 import time
 
 api_key = '628b24e279558dc47b21fb160692cdcf'
@@ -9,6 +10,7 @@ history = []
 
 print("Welcome to Daniel's Weather Console")
 
+# Runs at the beginning of the program
 def intro():
    answer = input("Do you want to continue (c), view instruction (i) or exit the program (e): ")
    if answer == "c":
@@ -18,7 +20,7 @@ def intro():
    elif answer == "e":
       exit()
    else:
-      print("Enter either (c), (i) or (e)")
+      print("[bold red]Enter either (c), (i) or (e)[/bold red]")
       time.sleep(2)
       intro()
 
@@ -35,17 +37,28 @@ def weather_main(location):
       current_weather = json.loads(response_current.text)
       forecast_weather = json.loads(response_forecast.text)
 
-      # Adding to the history list
-      history.append(location)
+      print(current_weather)
 
       print(f"The current weather in {location}")
       
-      print(f"History: ")
-      print(history)
+      # Current weather function
+      def current(location, current_weather):
+         
+         # Creates table for current weather
+         currenttable = Table(title=f"Current Weather for {location.upper()}")
+         currenttable.add_column(f"{location.upper()}", justify="center")
+         currenttable.add_column(f"Current Weather")
+
+         currenttable.add_row("Description", str(current_weather['weather'][0]['description']))
+         currenttable.add_row("Temperature", str(current_weather['main']['temp']))
+         currenttable.add_row("Feels Like", str(current_weather['main']['feels_like']))
+
+         print(currenttable)
 
       # Forecast function for 5 day
       def forecast(location, forecast_weather):
-
+         
+         # Creates table for 5 day forecast weather
          counter_forecast = 1
          
          forecasttable = Table(title=f"5 Day Forecast for {location.upper()}")
@@ -63,13 +76,18 @@ def weather_main(location):
          console.print(forecasttable)
 
       forecast(location, forecast_weather)
-      
+      current(location, current_weather)
+
+      # Adding to the history list
+      history.append(location)
+      print(f"History: {history}")
+
       # Re-asks user if they want to continue
       intro()
 
    # If invalid request, re-asks user to input a valid location
    else:
-      print("Status denied")
+      print("[bold red]Status denied[/bold red]")
       location_new = input("Re-enter a location: ")
       weather_main(location_new)
 
