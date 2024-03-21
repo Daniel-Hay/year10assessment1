@@ -4,8 +4,9 @@ from rich.table import Table
 from rich.console import Console
 from rich import print
 import time
+import os
 
-api_key = '628b24e279558dc47b21fb160692cdcf'
+api_key = 'b7ce39c80b01f1c963aac26c38d516e8'
 history = []
 
 print("Welcome to Daniel's Weather Console")
@@ -18,7 +19,8 @@ def intro():
    elif answer == "i":
       intructions()
    elif answer == "e":
-      exit()
+      os.system('cls')
+
    else:
       print("[bold red]Enter either (c), (i) or (e)[/bold red]")
       time.sleep(2)
@@ -37,8 +39,6 @@ def weather_main(location):
       current_weather = json.loads(response_current.text)
       forecast_weather = json.loads(response_forecast.text)
 
-      print(current_weather)
-
       print(f"The current weather in {location}")
       
       # Current weather function
@@ -48,7 +48,7 @@ def weather_main(location):
          currenttable = Table(title=f"Current Weather for {location.upper()}")
          currenttable.add_column(f"{location.upper()}", justify="center")
          currenttable.add_column(f"Current Weather")
-
+         print(current_weather['weather'])
          currenttable.add_row("Description", str(current_weather['weather'][0]['description']))
          currenttable.add_row("Temperature", str(current_weather['main']['temp']))
          currenttable.add_row("Feels Like", str(current_weather['main']['feels_like']))
@@ -77,8 +77,8 @@ def weather_main(location):
          console = Console()
          console.print(forecasttable)
 
-      current(location, forecast_weather)
-      forecast(location, current_weather)
+      current(location, current_weather)
+      forecast(location, forecast_weather)
 
       # Adding to the history list
       history.append(location)
@@ -94,6 +94,8 @@ def weather_main(location):
       weather_main(location_new)
 
 def intructions():
+   # Add the real intro then you can call 
    intro()
 
+# Calls the intro function
 intro()
