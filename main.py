@@ -9,9 +9,10 @@ import os
 api_key = 'b7ce39c80b01f1c963aac26c38d516e8'
 history = []
 
+print("Welcome to Daniel's Weather Console")
+
 # Runs at the beginning of the program
 def intro():
-   print("Welcome to Daniel's Weather Console")
    answer = input("Do you want to continue (c), view instruction (i) or exit the program (e): ")
    if answer == "c":
       weather_main(location = input("Enter a location: "))
@@ -72,8 +73,7 @@ def weather_main(location):
    response_forecast = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?q={location}&units=metric&appid={api_key}')
 
    # Checks if the location is a valid value
-   if response_current.status_code == 200: 
-
+   try:
       # Parses Json into dictionary
       current_weather = json.loads(response_current.text)
       forecast_weather = json.loads(response_forecast.text)
@@ -82,15 +82,15 @@ def weather_main(location):
       current(location, current_weather)
       forecast(location, forecast_weather)
 
-      # Adding to the history list
-      history.append(location)
+      # Adding to the front of the history list
+      history.insert(0, location)
       print(f"History: {history}")
 
       # Re-asks user if they want to continue
       intro()
 
    # If invalid request, re-asks user to input a valid location
-   else:
+   except:
       print("[bold red]Status denied, enter a valid location...[/bold red]")
       weather_main(input("Re-enter a location: "))
 
