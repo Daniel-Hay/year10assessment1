@@ -1,11 +1,7 @@
-# Year 10 Software Engineering Assessment 1
-
-## - Weather Console App
-
-<h style="text-align: center;">Weather Console App</h>
+# Software Engineering Assessment 1- Weather Console App
 
 **Product Description:**
-This Weather Console App utilises data from _OpenWeather_ api's to create a seemless user interation.....
+This Weather Console App utilises data obtained from _OpenWeather_ api's to create a seemless user interation.....
 
 ---
 
