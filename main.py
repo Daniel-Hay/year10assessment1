@@ -2,6 +2,7 @@
 import requests
 import json
 from rich.table import Table
+from rich.progress import track
 from rich import print
 import time
 import os
@@ -21,7 +22,10 @@ def intro():
    elif answer == "i":
       intructions()
    elif answer == "e":
-      # ADD CLEANER EXITING LATER
+      # Creates a loading bar to simulate exiting
+      for i in track(range(10), description="Exiting..."):
+         time.sleep(0.5)
+      # Clears the console after the loading bar is finished
       os.system('cls')
    else:
       print("[bold red]Enter either (c), (i) or (e)[/bold red]")
