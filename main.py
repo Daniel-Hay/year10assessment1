@@ -13,14 +13,15 @@ print("Welcome to Daniel's Weather Console")
 
 # Runs at the beginning of the program
 def intro():
+   # Asks user what option they want to select
    answer = input("Do you want to continue (c), view instruction (i) or exit the program (e): ")
+   answer = answer.lower()
    if answer == "c":
       weather_main(location = input("Enter a location: "))
    elif answer == "i":
       intructions()
    elif answer == "e":
       os.system('cls')
-
    else:
       print("[bold red]Enter either (c), (i) or (e)[/bold red]")
       time.sleep(2)
@@ -91,15 +92,22 @@ def weather_main(location):
 
    # If invalid request, re-asks user to input a valid location
    except:
-      print("[bold red]Status denied, enter a valid location...[/bold red]")
-      weather_main(input("Re-enter a location: "))
-
+      print("[bold red]Status denied, enter a valid location... or return to menu[/bold red]")
+      # Asks user if they want to return to menu or enter new location
+      denied_status = input("Re-enter location (l) or return to menu (m)")
+      denied_status = denied_status.lower()
+      if denied_status == 'l':
+         weather_main(input("Re-enter a location: "))
+      elif denied_status == 'm':
+         intro()
+      
+# Callable function for intructions
 def intructions():
-   # Add the real intro then you can call 
-   pass
-
-def help():
-    pass
+   print("To search for the weather and 5 day forcast in a specific location, press c to continue and input the valid name of the location (either suburb, city or country)")
+   time.sleep(2)
+   print("To exit the program, press e")
+   time.sleep(1)
+   intro()
 
 # Calls the intro function
 intro()
