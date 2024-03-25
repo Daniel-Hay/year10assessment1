@@ -21,6 +21,7 @@ def intro():
    elif answer == "i":
       intructions()
    elif answer == "e":
+      # ADD CLEANER EXITING LATER
       os.system('cls')
    else:
       print("[bold red]Enter either (c), (i) or (e)[/bold red]")
@@ -94,7 +95,7 @@ def weather_main(location):
    except:
       print("[bold red]Status denied, enter a valid location... or return to menu[/bold red]")
       # Asks user if they want to return to menu or enter new location
-      denied_status = input("Re-enter location (l) or return to menu (m)")
+      denied_status = input("Re-enter location (l) or return to menu (m): ")
       denied_status = denied_status.lower()
       if denied_status == 'l':
          weather_main(input("Re-enter a location: "))
