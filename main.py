@@ -15,7 +15,7 @@ print("Welcome to Daniel's Weather Console")
 # Runs at the beginning of the program
 def intro():
    # Asks user what option they want to select
-   answer = input("Do you want to continue (c), view instruction (i) or exit the program (e): ")
+   answer = input("Do you want to continue (c), view instruction (i) or exit the program (e) (Press enter after choosing option): ")
    answer = answer.lower()
    if answer == "c":
       weather_main(location = input("Enter a location: "))
@@ -99,7 +99,7 @@ def weather_main(location):
    except:
       print("[bold red]Status denied, enter a valid location... or return to menu[/bold red]")
       # Asks user if they want to return to menu or enter new location
-      denied_status = input("Re-enter location (l) or return to menu (m): ")
+      denied_status = input("Re-enter location (l) or return to menu (m) (Press enter after choosing option): ")
       denied_status = denied_status.lower()
       if denied_status == 'l':
          weather_main(input("Re-enter a location: "))
