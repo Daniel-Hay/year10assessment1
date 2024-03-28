@@ -23,7 +23,7 @@ def intro():
       intructions()
    elif answer == "e":
       # Creates a loading bar to simulate exiting
-      for i in track(range(10), description="Exiting..."):
+      for i in track(range(7), description="Exiting..."):
          time.sleep(0.5)
       # Clears the console after the loading bar is finished
       os.system('cls')
