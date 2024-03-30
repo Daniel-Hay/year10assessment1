@@ -7,3 +7,11 @@ This Weather Console App utilises data obtained from _OpenWeather_ api's to crea
 
 **How to use:**
 To use this program, run the python files then follow the different commands on the console depending on what option to choose. If you want to search up a certain location, type 'c' then hit 'enter', to view further instructions, type 'i' then hit enter, and to exit the program, type 'e' then hit enter. The weather searching function only allows for suburbs, cities, states and countries but not specific addresses. 
+
+
+**Packages/Libraries Used**
+* rich, version 13.7.1
+* requests, version 2.25.1
+* json (standard library)
+* time (standard library)
+* os (standard library)
