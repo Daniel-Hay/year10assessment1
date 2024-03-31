@@ -7,6 +7,7 @@ from rich import print
 import time
 import os
 
+# Api key and history list
 api_key = 'b7ce39c80b01f1c963aac26c38d516e8'
 history = []
 
@@ -15,6 +16,7 @@ print("Welcome to Daniel's Weather Console")
 # Runs at the beginning of the program
 def intro():
    # Asks user what option they want to select
+   print("[bold yellow]Main Menu[/bold yellow]")
    answer = input("Do you want to continue (c), view instruction (i) or exit the program (e) (Press enter after choosing option): ")
    answer = answer.lower()
    if answer == "c":
@@ -99,12 +101,14 @@ def weather_main(location):
    except:
       print("[bold red]Status denied, enter a valid location... or return to menu[/bold red]")
       # Asks user if they want to return to menu or enter new location
-      denied_status = input("Re-enter location (l) or return to menu (m) (Press enter after choosing option): ")
+      denied_status = input("Re-enter location (l) or return to menu (any other letter/symbol): ")
       denied_status = denied_status.lower()
       if denied_status == 'l':
          weather_main(input("Re-enter a location: "))
-      elif denied_status == 'm':
+      else:
          intro()
+
+
       
 # Callable function for intructions
 def intructions():
